@@ -138,6 +138,9 @@ impl BitStamp {
 
                 match message {
                     Message::Text(msg) => {
+                        // didn't want to write the same code for handling the first ack response
+                        // this is okay because the boolean will be false only once
+                        // so the branch predictor will be wrong only 1 time
                         if first {
                             let is_valid = is_valid_subs_response(&msg);
                             if !is_valid {
